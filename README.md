@@ -1,4 +1,4 @@
-# Erdős Problem #531: a lower bound F(4) ≥ 306
+# Erdős Problem #531: a lower bound F(4) ≥ 332
 
 ## The problem
 
@@ -10,13 +10,13 @@ A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ 
 
 ## The result
 
-`witnesses/w305.txt` is a 2-colouring of {1, …, 305}. Character i (counting from 1) is the colour of the integer i. No set {a < b < c < d} with a + b + c + d ≤ 305 has all 15 nonempty subset sums the same colour. Therefore
+`witnesses/w331.txt` is a 2-colouring of {1, …, 331}. Character i (counting from 1) is the colour of the integer i. No set {a < b < c < d} with a + b + c + d ≤ 331 has all 15 nonempty subset sums the same colour. Therefore
 
-**F(4) ≥ 306.**
+**F(4) ≥ 332.**
 
 | Witness | Length | SHA-256 |
 |---|---|---|
-| `witnesses/w305.txt` | 305 | `d85c6f85f385959e90c0fd86eae47d68e725e98539afeba1831a2704607aee0c` |
+| `witnesses/w331.txt` | 331 | `1b353273ad6d01bca28f5bbe6a73d5d9542f0314c98960ff396475118372490a` |
 
 As far as we could find, the best previously reported value was F(4) ≥ 201, in a working report on [erdosproblemaday.com](https://erdosproblemaday.com/problem/531) maintained by Patrick White. We found no value of F(4) on erdosproblems.com, in the OEIS, or in the published literature. Please open an issue if you know of one.
 
@@ -27,24 +27,24 @@ This is a lower bound only. It says nothing about the exact value of F(4). Showi
 The check is self-contained and takes about a second in C.
 
 ```sh
-shasum -a 256 witnesses/w305.txt
+shasum -a 256 witnesses/w331.txt
 cc -O2 -o check verify/check.c
-./check witnesses/w305.txt
+./check witnesses/w331.txt
 ```
 
 Expected output:
 
 ```
-N=305 tested=14154050 mono=0
+N=331 tested=19726362 mono=0
 ```
 
 A dependency-free Python checker gives the same result more slowly:
 
 ```sh
-python3 verify/check.py witnesses/w305.txt
+python3 verify/check.py witnesses/w331.txt
 ```
 
-Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 305 makes every set monochromatic: `tested=14154050 mono=14154050`.
+Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 331 makes every set monochromatic: `tested=19726362 mono=19726362`.
 
 ## Small values
 
@@ -52,7 +52,7 @@ Both checkers print the first monochromatic set they find and exit with status 1
 |---|---|---|
 | 2 | F(2) = 9 | Equals the weak Schur number WS(2) + 1. |
 | 3 | F(3) = 54 | Reported first by [erdosproblemaday.com](https://erdosproblemaday.com/report/531) with an LRAT proof. We reproduced it independently. |
-| 4 | F(4) ≥ 306 | This repository. |
+| 4 | F(4) ≥ 332 | This repository. |
 
 Our reproduction of F(3) = 54 used our own encoder, `verify/cnf.py`. It writes one pair of clauses for each set: the subset sums are not all colour 0, and they are not all colour 1. It uses no symmetry breaking. CaDiCaL finds a colouring for N = 53, and its model was checked directly. CaDiCaL reports N = 54 unsatisfiable, drat-trim verifies its DRAT proof, and Kissat agrees. The same encoder gives F(2) = 9, with a drat-trim-verified proof for N = 9.
 
@@ -64,7 +64,7 @@ drat-trim n54.cnf n54.drat
 
 ## How the witness was found
 
-The colourings were found by autonomous AI research agents. They used a SAT encoding with CaDiCaL and Kissat to reach N = 263. After that, min-conflicts local search with tabu and random restarts extended each colouring to the next N, starting from the previous witness. Several separately written checkers, in C and Python, confirmed the witnesses. They all ran on one machine, so they are independent implementations, not independent hardware.
+The colourings were found by autonomous AI research agents. They used a SAT encoding with CaDiCaL and Kissat to reach N = 263. After that, min-conflicts local search with tabu, WalkSAT-style noise and large random perturbations (60 or more bits at once) extended each colouring to the next N, starting from the previous witness. Smaller perturbations stalled at N = 305. Several separately written checkers, in C and Python, confirmed the witnesses. They all ran on one machine, so they are independent implementations, not independent hardware.
 
 ## Licence
 
