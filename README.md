@@ -2,7 +2,11 @@
 
 ## The problem
 
-Let F(k) be the least N such that every 2-colouring of {1, …, N} contains a set A of k distinct positive integers whose nonempty subset sums all have the same colour ([Erdős Problem #531](https://www.erdosproblems.com/531)). Every subset sum must lie in {1, …, N}, so only sets with sum(A) ≤ N count.
+From [erdosproblems.com/531](https://www.erdosproblems.com/531):
+
+> Let $F(k)$ be the minimal $N$ such that if we two-colour $\{1,\ldots,N\}$ there is a set $A$ of size $k$ such that all subset sums $\sum_{a\in S}a$ (for $\emptyset\neq S\subseteq A$) are monochromatic. Estimate $F(k)$.
+
+A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ N. The elements of A are distinct.
 
 ## The result
 
@@ -41,6 +45,22 @@ python3 verify/check.py witnesses/w305.txt
 ```
 
 Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 305 makes every set monochromatic: `tested=14154050 mono=14154050`.
+
+## Small values
+
+| k | Value | Status |
+|---|---|---|
+| 2 | F(2) = 9 | Equals the weak Schur number WS(2) + 1. |
+| 3 | F(3) = 54 | Reported first by [erdosproblemaday.com](https://erdosproblemaday.com/report/531) with an LRAT proof. We reproduced it independently. |
+| 4 | F(4) ≥ 306 | This repository. |
+
+Our reproduction of F(3) = 54 used our own encoder, `verify/cnf.py`. It writes one pair of clauses for each set: the subset sums are not all colour 0, and they are not all colour 1. It uses no symmetry breaking. CaDiCaL finds a colouring for N = 53, and its model was checked directly. CaDiCaL reports N = 54 unsatisfiable, drat-trim verifies its DRAT proof, and Kissat agrees. The same encoder gives F(2) = 9, with a drat-trim-verified proof for N = 9.
+
+```sh
+python3 verify/cnf.py 54 3 > n54.cnf
+cadical n54.cnf n54.drat --no-binary
+drat-trim n54.cnf n54.drat
+```
 
 ## How the witness was found
 
