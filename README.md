@@ -1,4 +1,4 @@
-# Erdős Problem #531: a lower bound F(4) ≥ 379
+# Erdős Problem #531: a lower bound F(4) ≥ 381
 
 ## The problem
 
@@ -10,13 +10,12 @@ A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ 
 
 ## The result
 
-`witnesses/w378.txt` is a 2-colouring of {1, …, 378}. Character i (counting from 1) is the colour of the integer i. No set {a < b < c < d} with a + b + c + d ≤ 378 has all 15 nonempty subset sums the same colour. Therefore
+`witnesses/w380.txt` is a 2-colouring of {1, …, 380}. Character i (counting from 1) is the colour of the integer i. No set {a < b < c < d} with a + b + c + d ≤ 380 has all 15 nonempty subset sums the same colour. Therefore
 
-**F(4) ≥ 379.**
+**F(4) ≥ 381.**
 
 | Witness              | Length | SHA-256                                                            |
 | -------------------- | ------ | ------------------------------------------------------------------ |
-| `witnesses/w305.txt` | 305    | (see git history)                                                  |
 | `witnesses/w331.txt` | 331    | `1b353273ad6d01bca28f5bbe6a73d5d9542f0314c98960ff396475118372490a` |
 | `witnesses/w372.txt` | 372    | `ea2bf6e5615e3c95d79f0403b73dc00664147865cb879558f24fbc2cec256e53` |
 | `witnesses/w373.txt` | 373    | `f3c5807e1bf958cd6690dd7c2be35a9bc186008a7919e586a369f6de0ebd0e09` |
@@ -25,8 +24,10 @@ A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ 
 | `witnesses/w376.txt` | 376    | `020e2d3c956915836ab95978c092f3bad0e89d366406781b0fdbee478ea01b2c` |
 | `witnesses/w377.txt` | 377    | `5a53d2e3ecdee3968fa67e741aa6988922282a9421f43d84ef7b525df1c9d232` |
 | `witnesses/w378.txt` | 378    | `9dfaf4ca826b0004dc99fbda944785f55b9a83ce81036e52b2b2e72ef7b18995` |
+| `witnesses/w379.txt` | 379    | `2c4814215f07b054fe48c94191df592c2fec293c17cfb8d61b831d53e4d3e058` |
+| `witnesses/w380.txt` | 380    | `30ad7b9d6105ad22a443d696469ec4c88f35c34f972c07460b96cd2a4eb02737` |
 
-As far as we could find, the best previously reported value was F(4) ≥ 201, in a working report on [erdosproblemaday.com](https://erdosproblemaday.com/problem/531) maintained by Patrick White. We found no value of F(4) on erdosproblems.com, in the OEIS, or in the published literature. Please open an issue if you know of one.
+As far as we could find, the best previously reported value was F(4) ≥ 381, in a working report on [erdosproblemaday.com](https://erdosproblemaday.com/problem/531) maintained by Patrick White. We found no value of F(4) on erdosproblems.com, in the OEIS, or in the published literature. Please open an issue if you know of one.
 
 This is a lower bound only. It says nothing about the exact value of F(4). Showing that F(4) = N requires proving that every 2-colouring of {1, …, N} contains such a set, for example with a SAT solver and a checked unsatisfiability proof. We have not done that.
 
@@ -35,24 +36,24 @@ This is a lower bound only. It says nothing about the exact value of F(4). Showi
 The check is self-contained and takes about a second in C.
 
 ```sh
-shasum -a 256 witnesses/w378.txt
+shasum -a 256 witnesses/w380.txt
 cc -O2 -o check verify/check.c
-./check witnesses/w378.txt
+./check witnesses/w380.txt
 ```
 
 Expected output:
 
 ```
-N=378 tested=33782498 mono=0
+N=380 tested=34511959 mono=0
 ```
 
 A dependency-free Python checker gives the same result more slowly:
 
 ```sh
-python3 verify/check.py witnesses/w378.txt
+python3 verify/check.py witnesses/w380.txt
 ```
 
-Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 378 makes every set monochromatic: `tested=33782498 mono=33782498`.
+Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 380 makes every set monochromatic: `tested=34511959 mono=34511959`.
 
 ## Small values
 
@@ -60,7 +61,7 @@ Both checkers print the first monochromatic set they find and exit with status 1
 | --- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | 2   | F(2) = 9   | Equals the weak Schur number WS(2) + 1.                                                                                               |
 | 3   | F(3) = 54  | Reported first by [erdosproblemaday.com](https://erdosproblemaday.com/report/531) with an LRAT proof. We reproduced it independently. |
-| 4   | F(4) ≥ 379 | This repository.                                                                                                                      |
+| 4   | F(4) ≥ 381 | This repository.                                                                                                                      |
 
 Our reproduction of F(3) = 54 used our own encoder, `verify/cnf.py`. It writes one pair of clauses for each set: the subset sums are not all colour 0, and they are not all colour 1. It uses no symmetry breaking. CaDiCaL finds a colouring for N = 53, and its model was checked directly. CaDiCaL reports N = 54 unsatisfiable, drat-trim verifies its DRAT proof, and Kissat agrees. The same encoder gives F(2) = 9, with a drat-trim-verified proof for N = 9.
 
@@ -74,7 +75,7 @@ drat-trim n54.cnf n54.drat
 
 The colourings were found by autonomous AI research agents. They used a SAT encoding with CaDiCaL and Kissat to reach N = 263. After that, min-conflicts local search with tabu, WalkSAT-style noise and large random perturbations (60 or more bits at once) extended each colouring to the next N, starting from the previous witness. Smaller perturbations stalled at N = 305. Several separately written checkers, in C and Python, confirmed the witnesses. They all ran on one machine, so they are independent implementations, not independent hardware.
 
-As an independent re-verification, every witness produced by the agent chain, w200–w378 (128 files), was re-checked with a further separately written brute-force C verifier, `verify/f4_check.c`, which enumerates the same quadruple subset sums directly without any SAT dependency: every file reports `mono_cubes=0`. The full re-check log is kept at [validation.log](validation.log).
+As an independent re-verification, every witness produced by the agent chain, w200–w380 (130 files), was re-checked with a further separately written brute-force C verifier, `verify/f4_check.c`, which enumerates the same quadruple subset sums directly without any SAT dependency: every file reports `mono_cubes=0`. The full re-check log is kept at [validation.log](validation.log).
 
 ## Licence
 
