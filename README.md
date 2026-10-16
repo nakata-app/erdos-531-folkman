@@ -27,7 +27,7 @@ A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ 
 | `witnesses/w379.txt` | 379    | `2c4814215f07b054fe48c94191df592c2fec293c17cfb8d61b831d53e4d3e058` |
 | `witnesses/w380.txt` | 380    | `30ad7b9d6105ad22a443d696469ec4c88f35c34f972c07460b96cd2a4eb02737` |
 
-As far as we could find, the best previously reported value was F(4) ≥ 381, in a working report on [erdosproblemaday.com](https://erdosproblemaday.com/problem/531) maintained by Patrick White. We found no value of F(4) on erdosproblems.com, in the OEIS, or in the published literature. Please open an issue if you know of one.
+As far as we could find, the best previously reported value was F(4) ≥ 201, in a working report on [erdosproblemaday.com](https://erdosproblemaday.com/problem/531) maintained by Patrick White. We found no value of F(4) on erdosproblems.com, in the OEIS, or in the published literature. Please open an issue if you know of one.
 
 This is a lower bound only. It says nothing about the exact value of F(4). Showing that F(4) = N requires proving that every 2-colouring of {1, …, N} contains such a set, for example with a SAT solver and a checked unsatisfiability proof. We have not done that.
 
