@@ -1,4 +1,4 @@
-# Erdős Problem #531: a lower bound F(4) ≥ 393
+# Erdős Problem #531: a lower bound F(4) ≥ 395
 
 ## The problem
 
@@ -10,9 +10,9 @@ A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ 
 
 ## The result
 
-`witnesses/w392.txt` is a 2-colouring of {1, …, 392}. Character i (counting from 1) is the colour of the integer i. No set {a < b < c < d} with a + b + c + d ≤ 392 has all 15 nonempty subset sums the same colour. Therefore
+`witnesses/w394.txt` is a 2-colouring of {1, …, 394}. Character i (counting from 1) is the colour of the integer i. No set {a < b < c < d} with a + b + c + d ≤ 394 has all 15 nonempty subset sums the same colour. Therefore
 
-**F(4) ≥ 393.**
+**F(4) ≥ 395.**
 
 | Witness              | Length | SHA-256                                                            |
 | -------------------- | ------ | ------------------------------------------------------------------ |
@@ -38,6 +38,8 @@ A colour is only defined on {1, …, N}, so a set A counts only when sum(A) ≤ 
 | `witnesses/w390.txt` | 390    | `d3b5103143bf21d852643f5c4283c952490d204124452d0f1c7193741545a1de` |
 | `witnesses/w391.txt` | 391    | `830761d29dfe8a78439b59088691ebf24287f31c7877fe9b6b120f418d48e2a4` |
 | `witnesses/w392.txt` | 392    | `47b8b7824382681010c703ff1027aebabc6651c17e2f6b611a9987c6e70f617a` |
+| `witnesses/w393.txt` | 393    | `a5d51acc9542ce87643c6193e3a06a764d70402ed61e3c9323bf370832882ab2` |
+| `witnesses/w394.txt` | 394    | `da609d657b3a861cdcca87d5a8af998515f7c59dc847250bb7df5e06019fc680` |
 
 As far as we could find, the best previously reported value was F(4) ≥ 201, in a working report on [erdosproblemaday.com](https://erdosproblemaday.com/problem/531) maintained by Patrick White. We found no value of F(4) on erdosproblems.com, in the OEIS, or in the published literature. Please open an issue if you know of one.
 
@@ -48,24 +50,24 @@ This is a lower bound only. It says nothing about the exact value of F(4). Showi
 The check is self-contained and takes about a second in C.
 
 ```sh
-shasum -a 256 witnesses/w392.txt
+shasum -a 256 witnesses/w394.txt
 cc -O2 -o check verify/check.c
-./check witnesses/w392.txt
+./check witnesses/w394.txt
 ```
 
 Expected output:
 
 ```
-N=392 tested=39139888 mono=0
+N=394 tested=39954257 mono=0
 ```
 
 A dependency-free Python checker gives the same result more slowly:
 
 ```sh
-python3 verify/check.py witnesses/w392.txt
+python3 verify/check.py witnesses/w394.txt
 ```
 
-Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 392 makes every set monochromatic: `tested=39139888 mono=39139888`.
+Both checkers print the first monochromatic set they find and exit with status 1 if there is one. As a sanity check, an all-zero string of length 394 makes every set monochromatic: `tested=39954257 mono=39954257`.
 
 ## Small values
 
@@ -73,7 +75,7 @@ Both checkers print the first monochromatic set they find and exit with status 1
 | --- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | 2   | F(2) = 9   | Equals the weak Schur number WS(2) + 1.                                                                                               |
 | 3   | F(3) = 54  | Reported first by [erdosproblemaday.com](https://erdosproblemaday.com/report/531) with an LRAT proof. We reproduced it independently. |
-| 4   | F(4) ≥ 393 | This repository.                                                                                                                      |
+| 4   | F(4) ≥ 395 | This repository.                                                                                                                      |
 
 Our reproduction of F(3) = 54 used our own encoder, `verify/cnf.py`. It writes one pair of clauses for each set: the subset sums are not all colour 0, and they are not all colour 1. It uses no symmetry breaking. CaDiCaL finds a colouring for N = 53, and its model was checked directly. CaDiCaL reports N = 54 unsatisfiable, drat-trim verifies its DRAT proof, and Kissat agrees. The same encoder gives F(2) = 9, with a drat-trim-verified proof for N = 9.
 
@@ -87,7 +89,7 @@ drat-trim n54.cnf n54.drat
 
 The colourings were found by autonomous AI research agents. They used a SAT encoding with CaDiCaL and Kissat to reach N = 263. After that, min-conflicts local search with tabu, WalkSAT-style noise and large random perturbations (60 or more bits at once) extended each colouring to the next N, starting from the previous witness. Smaller perturbations stalled at N = 305. Several separately written checkers, in C and Python, confirmed the witnesses. They all ran on one machine, so they are independent implementations, not independent hardware.
 
-As an independent re-verification, every witness produced by the agent chain, w200–w392 (145 files), was re-checked with a further separately written brute-force C verifier, `verify/f4_check.c`, which enumerates the same quadruple subset sums directly without any SAT dependency: every file reports `mono_cubes=0`. The full re-check log is kept at [validation.log](validation.log).
+As an independent re-verification, every witness produced by the agent chain, w200–w394 (147 files), was re-checked with a further separately written brute-force C verifier, `verify/f4_check.c`, which enumerates the same quadruple subset sums directly without any SAT dependency: every file reports `mono_cubes=0`. The full re-check log is kept at [validation.log](validation.log).
 
 ## Licence
 
