@@ -22,7 +22,7 @@ int main(int argc,char**argv){
         if(a+b+2*c+1>N) break;
         for(int d=c+1;d<=N;d++){
             int s=a+b+c+d; if(s>N) break;
-            int lo=0, hi=1;
+            int lo=0, hi=0;
             #define CHK(x) do{ if(col[x]) lo=1; else hi=1; }while(0)
             CHK(a);CHK(b);CHK(c);CHK(d);
             CHK(a+b);CHK(a+c);CHK(a+d);
