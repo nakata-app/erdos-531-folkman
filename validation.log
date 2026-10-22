@@ -1,148 +1,27 @@
-chain validation started Fri Oct 16 21:07:41 +03 2026
-21:07 w200: N= OK zero
-21:07 w201: N= OK zero
-21:07 w205: N= OK zero
-21:07 w210: N= OK zero
-21:07 w220: N= OK zero
-21:07 w230: N= OK zero
-21:07 w240: N= OK zero
-21:07 w245: N= OK zero
-21:07 w250: N= OK zero
-21:07 w260: N= OK zero
-21:07 w261: N= OK zero
-21:07 w262: N= OK zero
-21:07 w263: N= OK zero
-21:07 w264: N= OK zero
-21:07 w265: N= OK zero
-21:07 w266: N= OK zero
-21:07 w267: N= OK zero
-21:07 w268: N= OK zero
-21:07 w269: N= OK zero
-21:07 w270: N= OK zero
-21:07 w271: N= OK zero
-21:07 w272: N= OK zero
-21:07 w273: N= OK zero
-21:07 w274: N= OK zero
-21:07 w275: N= OK zero
-21:07 w276: N= OK zero
-21:07 w277: N= OK zero
-21:07 w278: N= OK zero
-21:07 w279: N= OK zero
-21:07 w280: N= OK zero
-21:07 w281: N= OK zero
-21:07 w282: N= OK zero
-21:07 w283: N= OK zero
-21:07 w284: N= OK zero
-21:07 w285: N= OK zero
-21:07 w286: N= OK zero
-21:07 w287: N= OK zero
-21:07 w288: N= OK zero
-21:07 w289: N= OK zero
-21:07 w290: N= OK zero
-21:07 w291: N= OK zero
-21:07 w292: N= OK zero
-21:07 w293: N= OK zero
-21:07 w294: N= OK zero
-21:07 w295: N= OK zero
-21:07 w296: N= OK zero
-21:07 w297: N= OK zero
-21:07 w298: N= OK zero
-21:07 w299: N= OK zero
-21:07 w300: N= OK zero
-21:07 w301: N= OK zero
-21:07 w302: N= OK zero
-21:07 w303: N= OK zero
-21:07 w304: N= OK zero
-21:07 w305: N= OK zero
-21:07 w306: N= OK zero
-21:07 w307: N= OK zero
-21:07 w308: N= OK zero
-21:07 w309: N= OK zero
-21:07 w310: N= OK zero
-21:07 w311: N= OK zero
-21:07 w312: N= OK zero
-21:07 w313: N= OK zero
-21:07 w314: N= OK zero
-21:07 w315: N= OK zero
-21:07 w316: N= OK zero
-21:07 w317: N= OK zero
-21:07 w318: N= OK zero
-21:07 w319: N= OK zero
-21:07 w320: N= OK zero
-21:07 w321: N= OK zero
-21:07 w322: N= OK zero
-21:07 w323: N= OK zero
-21:07 w324: N= OK zero
-21:07 w325: N= OK zero
-21:07 w326: N= OK zero
-21:07 w327: N= OK zero
-21:07 w328: N= OK zero
-21:07 w329: N= OK zero
-21:07 w330: N= OK zero
-21:07 w331: N= OK zero
-21:07 w332: N= OK zero
-21:07 w333: N= OK zero
-21:07 w334: N= OK zero
-21:07 w335: N= OK zero
-21:07 w336: N= OK zero
-21:07 w337: N= OK zero
-21:07 w338: N= OK zero
-21:07 w339: N= OK zero
-21:07 w340: N= OK zero
-21:07 w341: N= OK zero
-21:07 w342: N= OK zero
-21:07 w343: N= OK zero
-21:07 w344: N= OK zero
-21:07 w345: N= OK zero
-21:07 w346: N= OK zero
-21:07 w347: N= OK zero
-21:07 w348: N= OK zero
-21:07 w349: N= OK zero
-21:07 w350: N= OK zero
-21:07 w351: N= OK zero
-21:07 w352: N= OK zero
-21:07 w353: N= OK zero
-21:07 w354: N= OK zero
-21:07 w355: N= OK zero
-21:07 w356: N= OK zero
-21:07 w357: N= OK zero
-21:07 w358: N= OK zero
-21:07 w359: N= OK zero
-21:07 w360: N= OK zero
-21:07 w361: N= OK zero
-21:07 w362: N= OK zero
-21:07 w363: N= OK zero
-21:07 w364: N= OK zero
-21:07 w365: N= OK zero
-21:07 w366: N= OK zero
-21:07 w367: N= OK zero
-21:07 w368: N= OK zero
-21:07 w369: N= OK zero
-21:07 w370: N= OK zero
-21:07 w371: N= OK zero
-21:07 w372: N= OK zero
-done Fri Oct 16 21:07:47 +03 2026
-21:29 w373: N=373 mono=0 OK zero
-21:29 w374: N=374 mono=0 OK zero
-21:50 w375: N=375 mono=0 OK zero
-21:50 w376: N=376 mono=0 OK zero
-21:50 w377: N=377 mono=0 OK zero
-21:50 w378: N=378 mono=0 OK zero
-22:05 w379: N=379 mono=0 OK zero
-22:05 w380: N=380 mono=0 OK zero
-16:57 w381: N=381 mono=0 OK zero
-17:12 w382: N=382 mono=0 OK zero
-17:13 w383: N=383 mono=0 OK zero
-17:13 w384: N=384 mono=0 OK zero
-17:13 w385: N=385 mono=0 OK zero
-17:14 w386: N=386 mono=0 OK zero
-17:55 w387: N=387 mono=0 OK zero
-17:56 w388: N=388 mono=0 OK zero
-18:06 w389: N=389 mono=0 OK zero
-18:06 w390: N=390 mono=0 OK zero
-18:31 w391: N=391 mono=0 OK zero
-18:31 w392: N=392 mono=0 OK zero
-18:39 w393: N=393 mono=0 OK zero
-18:39 w394: N=394 mono=0 OK zero
-11:02 w395: N=395 mono=0 OK zero
-11:09 w396: N=396 mono=0 OK zero
+# verify/f4_check.c (lo=0,hi=0 fix, commit 31cde83) re-run over every witness, 2026-10-22T18:48Z
+witnesses/w331.txt N=331 mono_cubes=0
+witnesses/w372.txt N=372 mono_cubes=0
+witnesses/w373.txt N=373 mono_cubes=0
+witnesses/w374.txt N=374 mono_cubes=0
+witnesses/w375.txt N=375 mono_cubes=0
+witnesses/w376.txt N=376 mono_cubes=0
+witnesses/w377.txt N=377 mono_cubes=0
+witnesses/w378.txt N=378 mono_cubes=0
+witnesses/w379.txt N=379 mono_cubes=0
+witnesses/w380.txt N=380 mono_cubes=0
+witnesses/w381.txt N=381 mono_cubes=0
+witnesses/w382.txt N=382 mono_cubes=0
+witnesses/w383.txt N=383 mono_cubes=0
+witnesses/w384.txt N=384 mono_cubes=0
+witnesses/w385.txt N=385 mono_cubes=0
+witnesses/w386.txt N=386 mono_cubes=0
+witnesses/w387.txt N=387 mono_cubes=0
+witnesses/w388.txt N=388 mono_cubes=0
+witnesses/w389.txt N=389 mono_cubes=0
+witnesses/w390.txt N=390 mono_cubes=0
+witnesses/w391.txt N=391 mono_cubes=0
+witnesses/w392.txt N=392 mono_cubes=0
+witnesses/w393.txt N=393 mono_cubes=0
+witnesses/w394.txt N=394 mono_cubes=0
+witnesses/w395.txt N=395 mono_cubes=0
+witnesses/w396.txt N=396 mono_cubes=0
