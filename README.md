@@ -96,3 +96,20 @@ As an independent re-verification, every witness in this repository (26 files: w
 ## Licence
 
 The witness data is dedicated to the public domain under CC0 1.0. The checkers are released under the MIT licence.
+
+## k = 5: a lower bound F(5) ≥ 1401 (work in progress)
+
+`witnesses/k5_w1400.txt` is a 2-colouring of {1, …, 1400} (character i = colour of i). No 5-set {a<b<c<d<e} with
+a+b+c+d+e ≤ 1400 has all 31 nonempty subset sums the same colour, so **F(5) ≥ 1401**.
+
+Checked by two independent programs: `verify/k5_dfs.py` (search-side) and `verify/k5_check.c` (written separately;
+negative control: flipping one colour of the witness yields 7 monochromatic 5-sets, the all-zero colouring of
+{1..20} yields 19). `verify/k5_brute.c` is a third, slower checker (not run to completion for n ≥ 1000).
+Search: `search/k5_climb.c` (local search / hill climb, chain `witnesses/k5_w100 … k5_w1400`).
+
+| Witness | Length | SHA-256 |
+| --- | --- | --- |
+| `witnesses/k5_w1400.txt` | 1400 | `c59b4673c4ce9a9428ac04c6808b09c094c0a87b85c224338700d059a30d9011` |
+
+For comparison, the general bound of Balogh–Eberhard–Narayanan–Treglown–Wagner, F(k) ≥ 2^{2^{k-1}/k}, gives only
+F(5) ≥ 10; no specific F(5) value is listed on erdosproblems.com/531. The chain is still climbing.
