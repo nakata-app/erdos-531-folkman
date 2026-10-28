@@ -97,10 +97,12 @@ As an independent re-verification, every witness in this repository (26 files: w
 
 The witness data is dedicated to the public domain under CC0 1.0. The checkers are released under the MIT licence.
 
-## k = 5: a lower bound F(5) ≥ 1495 (work in progress)
+## k = 5: a lower bound F(5) ≥ 1514 (work in progress)
 
 `witnesses/k5_w1494.txt` is a 2-colouring of {1, …, 1494} (character i = colour of i). No 5-set {a<b<c<d<e} with
-a+b+c+d+e ≤ 1494 has all 31 nonempty subset sums the same colour, so **F(5) ≥ 1495**. Earlier chain points:
+a+b+c+d+e ≤ 1494 has all 31 nonempty subset sums the same colour. The repair chain has since been extended to
+`witnesses/k5_w1513.txt`, giving **F(5) ≥ 1514**. (The apparent stall at 1495 was not a wall: a heavier repair
+budget — 15000 iterations per restart, abort over 1000 violations, up to 100 seeds — passed it on seed 335.) Earlier chain points:
 `k5_w1400.txt` (F(5) ≥ 1401), `k5_w1451.txt` (F(5) ≥ 1452). The witnesses `k5_w1452` … `k5_w1494` were produced by
 the repair mode of `k5_climb` (`fix N+1 3000 witnesses/k5_wN.txt seed 400`: short tabu-walk restarts from the
 previous witness, a restart is abandoned when its violation count exceeds 400); every one of them passes
@@ -114,6 +116,7 @@ Search: `search/k5_climb.c` (local search / hill climb, chain `witnesses/k5_w100
 
 | Witness | Length | SHA-256 |
 | --- | --- | --- |
+| `witnesses/k5_w1513.txt` | 1513 | `b620e7c0c5f4de1d172a1952226b120c40bdddfe93279fe7842c9e4aaf7d6cc1` |
 | `witnesses/k5_w1494.txt` | 1494 | `93d8657710a0b51d05db3171ba8322aa23ac3bfeaa175fe54f248f5347ea3929` |
 | `witnesses/k5_w1451.txt` | 1451 | `0d94249f55bd414420ea1a6b4b545976ba25e7cc3bf771b5873b8a4ef1782377` |
 | `witnesses/k5_w1400.txt` | 1400 | `c59b4673c4ce9a9428ac04c6808b09c094c0a87b85c224338700d059a30d9011` |
