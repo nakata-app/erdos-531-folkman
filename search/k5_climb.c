@@ -183,6 +183,7 @@ static int do_step(int N, long maxiter) {
     int bad = 0;
     if (find_viol(N, N, A)) { flip(N); bad = find_viol(N, N, A); }
     long it = 0, stag = 0;
+    long cur = count_all(N);
     memset(tabu, 0, (size_t)(N + 1) * sizeof(int));
     while (bad) {
         if (++it > maxiter) {
@@ -192,13 +193,13 @@ static int do_step(int N, long maxiter) {
         }
         int cand[40];
         int nc = build_cands(A, N, cand);
-        long cur = count_all(N);
         long bestsc = -1; int bestx = -1;
         for (int j = 0; j < 5; j++) {
             int c = A[j];
             if (tabu[c] > it) continue;
             long sc = score_flip(c, N);
             if (bestx < 0 || sc < bestsc) { bestsc = sc; bestx = c; }
+            if (sc + 1 <= cur) break;
         }
         if (bestx < 0 || bestsc >= cur) {
             int off = (int)(rnd() % nc);
@@ -214,8 +215,8 @@ static int do_step(int N, long maxiter) {
         if (bestx < 0) bestx = cand[rnd() % nc];
         flip(bestx);
         tabu[bestx] = (int)(it + 4 + (rnd() % 7));
-        bad = find_viol_x(bestx, A);
-        if (!bad) bad = find_viol(1, N, A);
+        cur = bestsc;
+        bad = find_viol(1, N, A);
         if (getenv("K5DBG") && it % 100 == 0) {
             long c0 = scan(0, 1, N, 0), c1 = scan(1, 1, N, 0);
             printf("  N=%d it=%ld sc=%ld viol=%ld stag=%ld\n", N, it, bestsc, c0 + c1, stag);
@@ -234,6 +235,7 @@ static int do_step(int N, long maxiter) {
 }
 
 
+static long maxviol = 0;   /* fix mode: abort a restart whose violation count explodes (the walk left the seed basin) */
 static int run_fixed(int n, long maxit, const char *seedfile, long report) {
     N = n; WN = (n >> 6) + 2;
     memset(X, 0, sizeof X);
@@ -286,6 +288,7 @@ static int run_fixed(int n, long maxit, const char *seedfile, long report) {
             if (bestv < 0 || c0 + c1 < bestv) bestv = c0 + c1;
             printf("it=%ld viol=%ld best=%ld\n", it, c0 + c1, bestv);
             fflush(stdout);
+            if (maxviol > 0 && c0 + c1 > maxviol) { printf("DIVERGED n=%d it=%ld viol=%ld\n", n, it, c0 + c1); return 0; }
         }
     }
     long c0 = scan(0, 1, n, 0), c1 = scan(1, 1, n, 0);
@@ -300,12 +303,13 @@ static void rebuild(int n) {
 
 int main(int argc, char **argv) {
     if (argc >= 2 && strcmp(argv[1], "fix") == 0) {
-        if (argc < 3) { fprintf(stderr, "usage: %s fix N [iters] [seedfile] [seed]\n", argv[0]); return 2; }
+        if (argc < 3) { fprintf(stderr, "usage: %s fix N [iters] [seedfile] [seed] [maxviol]\n", argv[0]); return 2; }
         int n = atoi(argv[2]);
         long iters = (argc > 3) ? atol(argv[3]) : 200000;
         const char *sf = (argc > 4 && strcmp(argv[4], "-")) ? argv[4] : NULL;
         if (argc > 5) rs = strtoull(argv[5], NULL, 10) | 1;
-        int r = run_fixed(n, iters, sf, 1000);
+        if (argc > 6) maxviol = atol(argv[6]);
+        int r = run_fixed(n, iters, sf, 200);
         if (r) {
             char path[256];
             snprintf(path, sizeof path, "witnesses/k5_w%d.txt", n);
@@ -330,7 +334,7 @@ int main(int argc, char **argv) {
     bs_set(col[1], 1);
 
     int best = 1;
-    long maxiter = 3000;
+    long maxiter = 2500;
 
     for (N = 2; N <= nmax; N++) {
         memcpy(snap, col, (size_t)N);

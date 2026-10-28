@@ -97,12 +97,15 @@ As an independent re-verification, every witness in this repository (26 files: w
 
 The witness data is dedicated to the public domain under CC0 1.0. The checkers are released under the MIT licence.
 
-## k = 5: a lower bound F(5) ≥ 1452 (work in progress)
+## k = 5: a lower bound F(5) ≥ 1495 (work in progress)
 
-`witnesses/k5_w1451.txt` is a 2-colouring of {1, …, 1451} (character i = colour of i). No 5-set {a<b<c<d<e} with
-a+b+c+d+e ≤ 1451 has all 31 nonempty subset sums the same colour, so **F(5) ≥ 1452**. (Earlier chain point:
-`k5_w1400.txt`, F(5) ≥ 1401.) The hill climb from seed 20261027 could not extend 1451 to 1452 within its budget
-(5 restarts x 3000 iterations, best 3 violated 5-sets); longer repair runs are in progress.
+`witnesses/k5_w1494.txt` is a 2-colouring of {1, …, 1494} (character i = colour of i). No 5-set {a<b<c<d<e} with
+a+b+c+d+e ≤ 1494 has all 31 nonempty subset sums the same colour, so **F(5) ≥ 1495**. Earlier chain points:
+`k5_w1400.txt` (F(5) ≥ 1401), `k5_w1451.txt` (F(5) ≥ 1452). The witnesses `k5_w1452` … `k5_w1494` were produced by
+the repair mode of `k5_climb` (`fix N+1 3000 witnesses/k5_wN.txt seed 400`: short tabu-walk restarts from the
+previous witness, a restart is abandoned when its violation count exceeds 400); every one of them passes
+`verify/k5_check.c`. The from-scratch climb stalls near 1450; repair restarts pass such points (e.g. 1467 needed
+16 restarts).
 
 Checked by two independent programs: `verify/k5_dfs.py` (search-side) and `verify/k5_check.c` (written separately;
 negative control: flipping one colour of the witness yields 7 monochromatic 5-sets, the all-zero colouring of
@@ -111,6 +114,7 @@ Search: `search/k5_climb.c` (local search / hill climb, chain `witnesses/k5_w100
 
 | Witness | Length | SHA-256 |
 | --- | --- | --- |
+| `witnesses/k5_w1494.txt` | 1494 | `93d8657710a0b51d05db3171ba8322aa23ac3bfeaa175fe54f248f5347ea3929` |
 | `witnesses/k5_w1451.txt` | 1451 | `0d94249f55bd414420ea1a6b4b545976ba25e7cc3bf771b5873b8a4ef1782377` |
 | `witnesses/k5_w1400.txt` | 1400 | `c59b4673c4ce9a9428ac04c6808b09c094c0a87b85c224338700d059a30d9011` |
 
