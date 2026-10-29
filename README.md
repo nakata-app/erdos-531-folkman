@@ -97,12 +97,16 @@ As an independent re-verification, every witness in this repository (26 files: w
 
 The witness data is dedicated to the public domain under CC0 1.0. The checkers are released under the MIT licence.
 
-## k = 5: a lower bound F(5) ≥ 1514 (work in progress)
+## k = 5: a lower bound F(5) ≥ 1514
 
 `witnesses/k5_w1494.txt` is a 2-colouring of {1, …, 1494} (character i = colour of i). No 5-set {a<b<c<d<e} with
 a+b+c+d+e ≤ 1494 has all 31 nonempty subset sums the same colour. The repair chain has since been extended to
 `witnesses/k5_w1513.txt`, giving **F(5) ≥ 1514**. (The apparent stall at 1495 was not a wall: a heavier repair
-budget — 15000 iterations per restart, abort over 1000 violations, up to 100 seeds — passed it on seed 335.) Earlier chain points:
+budget — 15000 iterations per restart, abort over 1000 violations, up to 100 seeds — passed it on seed 335.)
+The repair chain is stopped at 1514: 1515 did not fall within the same heavy budget (100 seeds), so 1514 is
+the established bound from this local-search method. Both checkers certify `k5_w1513.txt`
+(sha256 `b620e7c0c5f4de1d172a1952226b120c40bdddfe93279fe7842c9e4aaf7d6cc1`). For comparison, the only general bound
+in the literature gives F(5) ≥ 10, so this is far stronger; pushing higher needs a stronger search or a SAT/exact method. Earlier chain points:
 `k5_w1400.txt` (F(5) ≥ 1401), `k5_w1451.txt` (F(5) ≥ 1452). The witnesses `k5_w1452` … `k5_w1494` were produced by
 the repair mode of `k5_climb` (`fix N+1 3000 witnesses/k5_wN.txt seed 400`: short tabu-walk restarts from the
 previous witness, a restart is abandoned when its violation count exceeds 400); every one of them passes
