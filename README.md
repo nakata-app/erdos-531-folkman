@@ -91,7 +91,7 @@ drat-trim n54.cnf n54.drat
 
 The colourings were found by autonomous AI research agents built on two language models: DeepSeek (DeepSeek-V4 family, driving the search agent that wrote and tuned the local-search code) and Claude (Anthropic, Claude Code, which wrote the verifiers, ran the independent re-checks and maintained this repository). Every witness was checked by programs, not by the models' own claims. They used a SAT encoding with CaDiCaL and Kissat to reach N = 263. After that, min-conflicts local search with tabu, WalkSAT-style noise and large random perturbations (60 or more bits at once) extended each colouring to the next N, starting from the previous witness. Smaller perturbations stalled at N = 305. Several separately written checkers, in C and Python, confirmed the witnesses. They all ran on one machine, so they are independent implementations, not independent hardware.
 
-As an independent re-verification, every witness in this repository (26 files: w331, w372, w396) was re-checked on 2026-10-22 with the current `verify/f4_check.c` (after commit 31cde83 fixed its colour-1 initialisation), a separately written brute-force C verifier that enumerates the same quadruple subset sums directly without any SAT dependency: every file reports `mono_cubes=0`, see [validation.log](validation.log). The full local chain produced by the agents, w200, w396 (149 files, not all of them kept in this repository), was re-checked the same way: [validation-chain.log](validation-chain.log). Note on the witness format: each `wN.txt` is a single line of N characters with no trailing newline (w396.txt was fixed on 2026-10-22; its SHA-256 is now `2a57e17ea0bea652699a3149c5ac9c0ca71bdf77029b9f52a7fbb5c53ca11f2e`; the earlier 397-byte form with an embedded newline had SHA-256 `a0ca6789beb0fb831a914ad03a817d5b6e74d4a56a16d2788addba536a673c3d` and encodes the same colouring).
+As an independent re-verification, every witness in this repository (26 files: w331, w372–w396) was re-checked on 2026-10-22 with the current `verify/f4_check.c` (after commit 31cde83 fixed its colour-1 initialisation), a separately written brute-force C verifier that enumerates the same quadruple subset sums directly without any SAT dependency: every file reports `mono_cubes=0`, see [validation.log](validation.log). The full local chain produced by the agents, w200–w396 (149 files, not all of them kept in this repository), was re-checked the same way: [validation-chain.log](validation-chain.log). Note on the witness format: each `wN.txt` is a single line of N characters with no trailing newline (w396.txt was fixed on 2026-10-22; its SHA-256 is now `2a57e17ea0bea652699a3149c5ac9c0ca71bdf77029b9f52a7fbb5c53ca11f2e`; the earlier 397-byte form with an embedded newline had SHA-256 `a0ca6789beb0fb831a914ad03a817d5b6e74d4a56a16d2788addba536a673c3d` and encodes the same colouring).
 
 ## Licence
 
@@ -102,7 +102,7 @@ The witness data is dedicated to the public domain under CC0 1.0. The checkers a
 `witnesses/k5_w1494.txt` is a 2-colouring of {1, …, 1494} (character i = colour of i). No 5-set {a<b<c<d<e} with
 a+b+c+d+e ≤ 1494 has all 31 nonempty subset sums the same colour. The repair chain has since been extended to
 `witnesses/k5_w1513.txt`, giving **F(5) ≥ 1514**. (The apparent stall at 1495 was not a wall: a heavier repair
-budget, 15000 iterations per restart, abort over 1000 violations, up to 100 seeds, passed it on seed 335.)
+budget — 15000 iterations per restart, abort over 1000 violations, up to 100 seeds — passed it on seed 335.)
 The repair chain is stopped at 1514: 1515 did not fall within the same heavy budget (100 seeds), so 1514 is
 the established bound from this local-search method. Both checkers certify `k5_w1513.txt`
 (sha256 `b620e7c0c5f4de1d172a1952226b120c40bdddfe93279fe7842c9e4aaf7d6cc1`). For comparison, the only general bound
@@ -129,5 +129,5 @@ Search: `search/k5_climb.c` (local search / hill climb, chain `witnesses/k5_w100
 | `witnesses/k5_w1451.txt` | 1451 | `0d94249f55bd414420ea1a6b4b545976ba25e7cc3bf771b5873b8a4ef1782377` |
 | `witnesses/k5_w1400.txt` | 1400 | `c59b4673c4ce9a9428ac04c6808b09c094c0a87b85c224338700d059a30d9011` |
 
-For comparison, the general bound of Balogh, Eberhard, Narayanan, Treglown, Wagner, F(k) ≥ 2^{2^{k-1}/k}, gives only
+For comparison, the general bound of Balogh–Eberhard–Narayanan–Treglown–Wagner, F(k) ≥ 2^{2^{k-1}/k}, gives only
 F(5) ≥ 10; no specific F(5) value is listed on erdosproblems.com/531. The chain is still climbing.
