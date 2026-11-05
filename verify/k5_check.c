@@ -19,7 +19,9 @@ static void rec(int depth, int last, int total) {
     }
 }
 int main(int argc, char **argv) {
+    if (argc < 2) { fprintf(stderr, "usage: %s <colouring-file>\n", argv[0]); return 2; }
     FILE *f = fopen(argv[1], "r"); int ch; N = 0;
+    if (!f) { fprintf(stderr, "no file: %s\n", argv[1]); return 2; }
     while ((ch = fgetc(f)) != EOF) if (ch == '0' || ch == '1') col[++N] = ch - '0';
     rec(0, 0, 0);
     printf("N=%d mono5=%ld\n", N, found); return found ? 1 : 0;

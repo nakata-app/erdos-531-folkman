@@ -120,6 +120,15 @@ yields 9 and position 1513 yields 1; the all-zero colouring of {1..20} yields 19
 monochromatic 5-set; the 18 flip-safe positions are 25, 1280, 1305, 1321, 1331, 1384, 1443, 1461, 1462, 1469, 1473,
 1477, 1484, 1487, 1489, 1502, 1505 and 1511. `verify/k5_brute.c` is a third, slower checker (not run to completion
 for n ≥ 1000).
+
+`k5_check.c` takes the witness file as its only argument and derives N from it (unlike `f4_check`, which takes
+`<N> <file>`):
+
+```sh
+cc -O2 -o k5_check verify/k5_check.c && ./k5_check witnesses/k5_w1513.txt
+python3 verify/k5_dfs.py witnesses/k5_w1513.txt
+```
+
 Search: `search/k5_climb.c` (local search / hill climb, chain `witnesses/k5_w100 … k5_w1400`).
 
 | Witness | Length | SHA-256 |

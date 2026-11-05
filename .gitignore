@@ -1,1 +1,5 @@
 check
+k5_check
+__pycache__/
+search/k5_climb
+verify/k5_brute
