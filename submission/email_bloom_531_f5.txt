@@ -1,0 +1,30 @@
+To: erdosproblemsonline@gmail.com
+Subject: Erdős #531: a lower bound F(5) >= 1514 (explicit checked witness)
+
+Dear Thomas,
+
+Following the F(4) >= 397 note for problem 531, we now also have F(5) >= 1514.
+
+Convention: F(k) is the least N such that every 2-colouring of {1,...,N} contains a
+k-element set A with all 2^k-1 nonempty subset sums the same colour and sum(A) <= N
+(so F(2)=9, F(3)=54, F(4) >= 397 as reported earlier).
+
+Result: the file witnesses/k5_w1513.txt is an explicit 2-colouring of {1,...,1513}
+with no 5-set {a<b<c<d<e}, a+b+c+d+e <= 1513, whose 31 nonempty subset sums are all
+one colour. Hence F(5) >= 1514. We found no specific F(5) value in the literature, on
+erdosproblems.com, or in the OEIS; the general Balogh-Eberhard-Narayanan-Treglown-Wagner
+bound gives only F(5) >= 10.
+
+Repository (CC0 data, MIT code), with two independent checkers and the witness sha256:
+https://github.com/nakata-app/erdos-531-folkman
+
+It is also on the community database PR:
+https://github.com/teorth/erdosproblems/pull/490
+
+The witness was found by a local-search / repair chain (search/k5_climb.c) run by AI
+agents (DeepSeek and Claude); the bound is a lower bound only and all verification is by
+the programs in the repo.
+
+Best,
+Atakan Akbaba
+nakata.app
